@@ -10,22 +10,10 @@ namespace SY22_PRRPRR02_10_Undantag_Filer {
 	internal class Program {
 		static void Main(string[] args) {
 
-			Polygon polygon = new Polygon();
+			string serialized = File.ReadAllText("polygon.json");
+			Polygon deserialized = JsonSerializer.Deserialize<Polygon>(serialized);
 
-			polygon.FillColor = "red";
-			polygon.BorderColor = "black";
-			polygon.Corners = new Coordinate[] {
-				new Coordinate(0, 0),
-				new Coordinate(0, 10),
-				new Coordinate(10, 10),
-				new Coordinate(10, 0),
-			};
-
-			string serialized = JsonSerializer.Serialize(polygon);
-
-			File.WriteAllText("polygon.json", serialized);
-
-
+			
 
 		}
 	}
