@@ -9,15 +9,14 @@ namespace SY22_PRRPRR02_10_Undantag_Filer {
 	internal class Program {
 		static void Main(string[] args) {
 
-			FileStream fs = File.Open("streamdemo.txt", FileMode.Create);
-			StreamWriter writer = new StreamWriter(fs);
+			FileStream fs = File.Open("streamdemo.txt", FileMode.OpenOrCreate);
+			StreamReader reader = new StreamReader(fs);
 
-			writer.WriteLine("Hejhejehjehej");
-			writer.WriteLine("dsaiojfoijads");
-			writer.WriteLine("ännu något mer");
-			writer.WriteLine("bajs");
+			while (!reader.EndOfStream) {
+				Console.WriteLine(reader.ReadLine());
+			}
 
-			writer.Close();
+			reader.Close();
 			fs.Close(); // motsatt ordning från när vi skapade variablerna
 		}
 	}
