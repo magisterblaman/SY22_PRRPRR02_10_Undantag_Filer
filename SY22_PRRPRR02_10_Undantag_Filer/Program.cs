@@ -4,20 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.Json;
 
 namespace SY22_PRRPRR02_10_Undantag_Filer {
 	internal class Program {
 		static void Main(string[] args) {
 
-			FileStream fs = File.Open("streamdemo.txt", FileMode.OpenOrCreate);
-			StreamReader reader = new StreamReader(fs);
+			Polygon polygon = new Polygon();
 
-			while (!reader.EndOfStream) {
-				Console.WriteLine(reader.ReadLine());
-			}
+			polygon.FillColor = "red";
+			polygon.BorderColor = "black";
+			polygon.Corners = new Coordinate[] {
+				new Coordinate(0, 0),
+				new Coordinate(0, 10),
+				new Coordinate(10, 10),
+				new Coordinate(10, 0),
+			};
 
-			reader.Close();
-			fs.Close(); // motsatt ordning från när vi skapade variablerna
+			string serialized = JsonSerializer.Serialize(polygon);
+
+			File.WriteAllText("polygon.json", serialized);
+
+
+
 		}
 	}
 }
