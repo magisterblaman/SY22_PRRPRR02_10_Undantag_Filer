@@ -8,12 +8,15 @@ using System.IO;
 namespace SY22_PRRPRR02_10_Undantag_Filer {
 	internal class Program {
 		static void Main(string[] args) {
-			while (true) {
-				string content2 = Console.ReadLine();
-
-				// File.WriteAllText("test.txt", content2 + "\n");
-				File.AppendAllText("test.txt", content2 + "\n");
+			Console.WriteLine("Skriv in ett filnamn");
+			string path = Console.ReadLine();
+			try {
+				string content = File.ReadAllText(path);
+				Console.WriteLine(content);
+			} catch (FileNotFoundException e) {
+				Console.WriteLine("Kunde inte hitta filen!");
 			}
+
 		}
 	}
 }
