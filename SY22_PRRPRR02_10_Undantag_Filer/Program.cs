@@ -10,10 +10,11 @@ namespace SY22_PRRPRR02_10_Undantag_Filer {
 		static void Main(string[] args) {
 			Console.WriteLine("Skriv in ett filnamn");
 			string path = Console.ReadLine();
-			try {
+
+			if (File.Exists(path)) {
 				string content = File.ReadAllText(path);
 				Console.WriteLine(content);
-			} catch (FileNotFoundException e) {
+			} else {
 				Console.WriteLine("Kunde inte hitta filen!");
 			}
 
